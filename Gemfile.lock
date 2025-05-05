@@ -149,8 +149,6 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.18.8-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-linux-gnu)
-      racc (~> 1.4)
     pg (1.5.9)
     pp (0.6.2)
       prettyprint
@@ -248,7 +246,6 @@ GEM
 
 PLATFORMS
   x86_64-darwin-24
-  x86_64-linux
 
 DEPENDENCIES
   bootsnap
