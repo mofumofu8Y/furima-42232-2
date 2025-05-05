@@ -257,7 +257,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
-  pg
+  pg (~> 1.5)
   puma (>= 5.0)
   rails (~> 7.1.0)
   selenium-webdriver
