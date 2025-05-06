@@ -29,3 +29,5 @@ end
 group :production do
   gem "pg", "~> 1.5" # ← Renderで使うPostgreSQL
 end
+
+gem 'devise'
