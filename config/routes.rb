@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
+  # Deviseのルーティング（コントローラーをカスタマイズしている場合）
   devise_for :users
-  # ルートパスを設定
+  # トップページ
   root 'items#index'
 
-
-
-  # アプリケーションのヘルスチェック
-  get "up" => "rails/health#show", as: :rails_health_check
+  # ←ここに記載！
+  resources :items
 end
-
