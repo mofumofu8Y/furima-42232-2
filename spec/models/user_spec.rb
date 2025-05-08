@@ -81,6 +81,32 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Email is invalid')
       end
+
+      # last_name, first_nameの正規表現テスト
+      it 'last_nameが漢字、ひらがな、カタカナ以外では登録できない' do
+        @user.last_name = 'Tanaka123'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name is invalid')
+      end
+
+      it 'first_nameが漢字、ひらがな、カタカナ以外では登録できない' do
+        @user.first_name = 'Taro123'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name is invalid')
+      end
+
+      # last_name_kana, first_name_kanaの正規表現テスト
+      it 'last_name_kanaがカタカナ以外では登録できない' do
+        @user.last_name_kana = 'たなか'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name kana is invalid')
+      end
+
+      it 'first_name_kanaがカタカナ以外では登録できない' do
+        @user.first_name_kana = 'たろう'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name kana is invalid')
+      end
     end
   end
 end
