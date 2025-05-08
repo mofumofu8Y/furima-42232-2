@@ -15,6 +15,9 @@ gem "bootsnap", require: false
 group :development, :test do
   gem "mysql2", "~> 0.5" # ← ローカルで使うMySQL
   gem "debug", platforms: %i[ mri windows ]
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
