@@ -13,5 +13,5 @@ VALID_PASSWORD_REGEX = /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/
   validates :last_name_kana, presence: true, format: { with: VALID_KANA_REGEX }
   validates :first_name_kana, presence: true, format: { with: VALID_KANA_REGEX }
   validates :birth_date, presence: true
-  validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数字混合で入力してください' }, if: :password_required?
+  validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数字混合で入力してください' }
 end
