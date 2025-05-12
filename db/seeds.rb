@@ -1,9 +1,17 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# db/seeds.rb
+
+# 商品の状態（Condition）
+Condition.create!([
+  { name: '新品・未使用' },
+  { name: '未使用に近い' },
+  { name: '目立った傷や汚れなし' },
+  { name: 'やや傷や汚れあり' },
+  { name: '傷や汚れあり' },
+  { name: '全体的に状態が悪い' }
+])
+
+# 配送料の負担（ShippingFee）
+ShippingFee.create!([
+  { name: '送料込み（出品者負担）' },
+  { name: '着払い（購入者負担）' }
+])

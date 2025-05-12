@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  # Deviseのルーティング（コントローラーをカスタマイズしている場合）
   devise_for :users
+  
   # トップページ
   root 'items#index'
 
-  # ←ここに記載！
-  resources :items
+  # 必要なアクションをまとめて1行に定義
+  resources :items, only: [:index, :new, :create, :show]
 end
