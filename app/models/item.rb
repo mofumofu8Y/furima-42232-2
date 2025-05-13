@@ -1,7 +1,11 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  # has_one :order 
+  has_one :order
+
+   
+
+
 
   # ActiveHashを使ったアソシエーション
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -44,6 +48,9 @@ class Item < ApplicationRecord
   # 画像のバリデーション（カスタムバリデーション）
   validate :image_content_type
   validate :image_size
+
+
+
 
   private
 

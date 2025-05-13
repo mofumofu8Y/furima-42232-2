@@ -131,7 +131,7 @@
       <% if @items.any? %>
   <% @items.each do |item| %>
     <li class='list'>
-    
+    <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" if item.image.attached? %>
           <%# 売り切れ表示は購入機能実装後に追加します %>
@@ -149,10 +149,13 @@
             </div>
           </div>
         </div>
-      <% end %>
+        <% end %>
     </li>
   <% end %>
 <% else %>
+
+
+
   <li class='list'>
     <%= link_to '#' do %>
       <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -170,6 +173,7 @@
   </li>
 <% end %>
     </ul>
+
   </div>
   <%# /商品一覧 %>
 

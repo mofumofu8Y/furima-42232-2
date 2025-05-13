@@ -1,11 +1,16 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
 
   def index
     @items = Item.includes(:image_attachment).order(created_at: :desc)
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
   def new
+
     @item = Item.new
     @categories = Category.all
     @conditions = Condition.all

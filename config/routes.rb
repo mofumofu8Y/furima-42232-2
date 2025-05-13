@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   root 'items#index'
 
   # 必要なアクションをまとめて1行に定義
-  resources :items, only: [:index, :new, :create, :show]
+  resources :items, only: [:index, :new, :create, :show, :edit, :update] do
+    # ordersリソースをネスト
+    resources :orders, only: [:new, :create]
+  end
 end
