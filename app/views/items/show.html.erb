@@ -26,13 +26,16 @@
     </div>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-    <% if user_signed_in? && current_user == @item.user && @item.order.nil? %>
-      <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %> <!-- 編集リンク -->
-      <p class="or-text">or</p>
-      <%= link_to "削除", item_path(@item), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "item-destroy" %> <!-- 削除リンク -->
-    <% elsif user_signed_in? && current_user != @item.user && @item.order.nil? %>
-      <%= link_to "購入画面に進む", new_item_order_path(@item), class: "item-red-btn" %> <!-- 購入ボタン -->
-    <% end %>
+   <% if user_signed_in? %>
+  <% if current_user == @item.user && @item.order.nil? %>
+    <!-- 出品者：編集・削除ボタンを表示 -->
+    <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
+    <%= link_to "削除", item_path(@item), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "item-destroy" %>
+  <% elsif current_user != @item.user && @item.order.nil? %>
+    <!-- 購入者：購入ボタンを表示 -->
+    <%= link_to "購入画面に進む", new_item_order_path(@item), class: "item-red-btn" %>
+  <% end %>
+<% end %>
   </div>
 
   <div class="item-explain-box">
