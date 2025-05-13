@@ -11,6 +11,9 @@ module Furima422322
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
+    # Add this line to include the app/models path in autoload paths
+    config.autoload_paths += %W(#{config.root}/app/models)
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
@@ -25,3 +28,4 @@ module Furima422322
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
