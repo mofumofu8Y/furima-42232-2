@@ -11,15 +11,19 @@ app/assets/stylesheets/items/new.css %>
 
    <%# エラーメッセージ表示部分を追加 %>
   <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
-      <ul>
-        <% @item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div id="error_explanation">
+    <h2>
+      <span style="color: red;">
+        <%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:
+      </span>
+    </h2>
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><span style="color: red;"><%= message %></span></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -110,13 +114,13 @@ app/assets/stylesheets/items/new.css %>
       </div>
       <div>
         <div class="price-content">
-          <div class="price-text">
-            <span>価格</span>
-            <span class="indispensable">必須</span>
-          </div>
-          <span class="sell-yen">¥</span>
-          <%= f.text_field :price, class: "price-input", id: "item-price", placeholder: "例）300", value: @item.price %>
-          </div>
+  <div class="price-text">
+    <span>価格</span>
+    <span class="indispensable">必須</span>
+  </div>
+  <span class="sell-yen">¥</span>
+  <%= f.number_field :price, class: "price-input", id: "item-price", placeholder: "300", min: 300, max: 9999999 %>
+</div>
 
           <div class="price-content">
         </div>
