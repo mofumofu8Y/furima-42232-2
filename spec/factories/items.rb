@@ -10,6 +10,8 @@ FactoryBot.define do
     scheduled_delivery_id { 2 }  # ActiveHashの初期値1以外（バリデで除外される）
     association :user
 
+
+
     after(:build) do |item|
       item.image.attach(
         io: File.open(Rails.root.join('spec/fixtures/files/test_image.png')),
