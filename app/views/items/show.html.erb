@@ -28,11 +28,11 @@
    <% if user_signed_in? %>
   <% if current_user == @item.user %>
     <!-- 出品者：編集・削除ボタン -->
-    <%#= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
-    <%#= link_to "削除", item_path(@item), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "item-destroy" %>
+    <%= link_to "商品の編集",  "#", class: "item-red-btn" %>
+    <%= link_to "削除",  "#", class: "item-destroy" %>
   <% else %>
     <!-- 出品者以外のログインユーザー：購入ボタン -->
-    <%#= link_to "購入画面に進む", new_item_order_path(@item), class: "item-red-btn" %>
+    <%= link_to "購入画面に進む",  "#", class: "item-red-btn" %>
   <% end %>
 <% end %>
   </div>
