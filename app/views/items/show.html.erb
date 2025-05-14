@@ -27,20 +27,20 @@
 
    <% if user_signed_in? %>
   <% if current_user == @item.user %>
-    <!-- 出品者：編集・削除ボタンを表示 -->
-    <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
-    <%= link_to "削除", item_path(@item), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "item-destroy" %>
-  <% elsif current_user != @item.user && @item.order.nil? %>
-    <!-- 購入者：購入ボタンを表示 -->
-    <%# <%= link_to "購入画面に進む", new_item_order_path(@item), class: "item-red-btn" %> %>
+    <!-- 出品者：編集・削除ボタン -->
+    <%#= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
+    <%#= link_to "削除", item_path(@item), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "item-destroy" %>
+  <% else %>
+    <!-- 出品者以外のログインユーザー：購入ボタン -->
+    <%#= link_to "購入画面に進む", new_item_order_path(@item), class: "item-red-btn" %>
   <% end %>
 <% end %>
   </div>
 
   <div class="item-explain-box">
-    <span><%= "商品説明" %></span>
-    <p><%= @item.description %></p>
-  </div>
+  <span>商品説明</span>
+  <p><%= @item.description %></p>
+</div>
 
   <table class="detail-table">
     <tbody>
