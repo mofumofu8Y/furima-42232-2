@@ -63,6 +63,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def redirect_if_not_owner
+    redirect_to root_path unless current_user == @item.user
+  end
+
   def set_select_box_values
     @categories = Category.all
     @conditions = Condition.all
