@@ -25,15 +25,14 @@
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
    <% if user_signed_in? %>
-  <% if current_user == @item.user && @item.order.nil? %>
+  <% if current_user == @item.user %>
     <!-- 出品者：編集・削除ボタンを表示 -->
     <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
     <%= link_to "削除", item_path(@item), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "item-destroy" %>
   <% elsif current_user != @item.user && @item.order.nil? %>
     <!-- 購入者：購入ボタンを表示 -->
-    <%= link_to "購入画面に進む", new_item_order_path(@item), class: "item-red-btn" %>
+    <%# <%= link_to "購入画面に進む", new_item_order_path(@item), class: "item-red-btn" %> %>
   <% end %>
 <% end %>
   </div>
@@ -54,7 +53,7 @@
       </tr>
       <tr>
         <th class="detail-item">商品の状態</th>
-        <td class="detail-value"><%= @item.condition %></td>
+        <td class="detail-value"><%= @item.condition.name %></td>
       </tr>
       <tr>
         <th class="detail-item">配送料の負担</th>
