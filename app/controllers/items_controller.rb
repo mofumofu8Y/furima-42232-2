@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_select_box_values, only: [:new, :create, :edit, :update]
-  before_action :redirect_if_not_owner, only: [:edit, :update]
+  before_action :redirect_if_not_owner, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.includes(:image_attachment).order(created_at: :desc)
@@ -39,6 +39,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to root_path, notice: "商品を削除しました"
+    else
+      redirect_to root_path
+    end
+  end
+  
+  
   private
 
   def item_params
