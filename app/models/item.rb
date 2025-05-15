@@ -24,20 +24,17 @@ belongs_to :days_to_ship, class_name: "DaysToShip"
 validates :name, presence: { message: "can't be blank" }
 validates :description, presence: { message: "can't be blank" }
 validates :image, presence: { message: "can't be blank" }
-validates :category_id, presence: { message: "can't be blank" }
-validates :condition_id, presence: { message: "can't be blank" }
-validates :shipping_fee_id, presence: { message: "can't be blank" }
-validates :prefecture_id, presence: { message: "can't be blank" }
-validates :scheduled_delivery_id, presence: { message: "can't be blank" }
 validates :price, presence: { message: "can't be blank" }
 
 # セレクトが「---」(id: 1)以外であること
+# この形に統一すればOK
 with_options numericality: { other_than: 1, message: 'must be selected' } do
   validates :category_id
   validates :condition_id
   validates :shipping_fee_id
   validates :prefecture_id
 end
+
 validates :scheduled_delivery_id, numericality: { other_than: 1, message: 'Delivery day must be selected' }
 
 # 価格範囲と形式のバリデーション
