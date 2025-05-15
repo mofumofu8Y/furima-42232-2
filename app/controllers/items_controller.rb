@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_item, only: [:show, :edit, :update]
   before_action :set_select_box_values, only: [:new, :create, :edit, :update]
+  before_action :redirect_if_not_owner, only: [:edit, :update]
 
   def index
     @items = Item.includes(:image_attachment).order(created_at: :desc)
@@ -24,18 +25,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-    unless current_user == @item.user
-      redirect_to root_path, alert: 'この商品は編集できません'
-    end
-  end
+  
 
   def update
-    unless current_user == @item.user
-      redirect_to root_path, alert: 'この商品は編集できません'
-      return
-    end
-
+   
     if @item.update(item_params)
       redirect_to item_path(@item), notice: '商品情報を更新しました'
     else

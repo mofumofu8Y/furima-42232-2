@@ -20,35 +20,34 @@ belongs_to :days_to_ship, class_name: "DaysToShip"
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :scheduled_delivery
 
-  # バリデーション
-  with_options presence: true do
-    validates :name
-    validates :description
-    validates :image
-    validates :category_id
-    validates :condition_id
-    validates :shipping_fee_id
-    validates :prefecture_id
-    validates :scheduled_delivery_id
-    validates :price
-  end
+ # バリデーション
+validates :name, presence: { message: "can't be blank" }
+validates :description, presence: { message: "can't be blank" }
+validates :image, presence: { message: "can't be blank" }
+validates :category_id, presence: { message: "can't be blank" }
+validates :condition_id, presence: { message: "can't be blank" }
+validates :shipping_fee_id, presence: { message: "can't be blank" }
+validates :prefecture_id, presence: { message: "can't be blank" }
+validates :scheduled_delivery_id, presence: { message: "can't be blank" }
+validates :price, presence: { message: "can't be blank" }
 
-  # セレクトが「---」(id: 1)以外であること
-  with_options numericality: { other_than: 1, message: 'を選択してください' } do
-    validates :category_id
-    validates :condition_id
-    validates :shipping_fee_id
-    validates :prefecture_id
-  end
-  validates :scheduled_delivery_id, numericality: { other_than: 1, message: 'Delivery day を選択してください' }
-  
-  # 価格範囲と形式のバリデーション
-  validates :price, numericality: {
+# セレクトが「---」(id: 1)以外であること
+with_options numericality: { other_than: 1, message: 'must be selected' } do
+  validates :category_id
+  validates :condition_id
+  validates :shipping_fee_id
+  validates :prefecture_id
+end
+validates :scheduled_delivery_id, numericality: { other_than: 1, message: 'Delivery day must be selected' }
+
+# 価格範囲と形式のバリデーション
+validates :price, numericality: {
   only_integer: true,
   greater_than_or_equal_to: 300,
   less_than_or_equal_to: 9_999_999,
-  message: 'は¥300〜¥9,999,999の間で入力してください'
+  message: 'must be between ¥300 and ¥9,999,999'
 }
+
 
   # 画像のバリデーション（カスタムバリデーション）
   validate :image_content_type
@@ -63,14 +62,14 @@ belongs_to :days_to_ship, class_name: "DaysToShip"
   def image_content_type
     acceptable_types = ['image/png', 'image/jpg', 'image/jpeg']
     unless acceptable_types.include?(image.content_type)
-      errors.add(:image, 'はPNG、JPG、JPEGのいずれかの形式でアップロードしてください')
+      errors.add(:image, 'must be PNG, JPG, or JPEG format')
     end
   end
 
   # 画像のサイズが5MB以下かどうか確認
   def image_size
     if image.attached? && image.byte_size > 5.megabytes
-      errors.add(:image, 'は5MB以下でアップロードしてください')
+      errors.add(:image, 'must be less than 5MB')
     end
   end
 end

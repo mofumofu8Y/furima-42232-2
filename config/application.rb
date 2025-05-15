@@ -10,6 +10,8 @@ module Furima422322
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
+    
+
 
     # Add this line to include the app/models path in autoload paths
     config.autoload_paths += %W(#{config.root}/app/models)

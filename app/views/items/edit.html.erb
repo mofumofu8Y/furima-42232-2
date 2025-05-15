@@ -7,23 +7,15 @@ app/assets/stylesheets/items/new.css %>
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with model: @item, local: true do |f| %>
 
-   <%# エラーメッセージ表示部分を追加 %>
-  <% if @item.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <span style="color: red;">
-        <%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:
-      </span>
-    </h2>
-    <ul>
-      <% @item.errors.full_messages.each do |message| %>
-        <li><span style="color: red;"><%= message %></span></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+
+    <%= form_with model: @item, local: true do |f| %>
+<%= render 'shared/error_messages', model: f.object %>
+
+
+  
+
+
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -74,7 +66,7 @@ app/assets/stylesheets/items/new.css %>
     </div>
     <%# /商品の詳細 %>
 
-    <<%# 配送について %>
+    <%# 配送について %>
 <div class="items-detail">
   <div class="weight-bold-text question-text">
     <span>配送について</span>
@@ -165,8 +157,8 @@ app/assets/stylesheets/items/new.css %>
       <%=link_to 'もどる', "#", class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
-  </div>
   <% end %>
+  </div>
 
   <footer class="items-sell-footer">
     <ul class="menu">
