@@ -1,8 +1,8 @@
 <% if model.errors.any? %>
-  <div id="error_explanation" style="text-align: center; margin-bottom: 20px;">
-    <ul style="list-style: none; padding: 0;">
-      <% model.errors.full_messages.each do |msg| %>
-        <li style="color: red; font-size: 14px;"><%= msg %></li>
+  <div id="error_explanation">
+    <ul>
+      <% model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
     </ul>
   </div>
