@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   # トップページ
   root 'items#index'
 
-  # 必要なアクションをまとめて1行に定義
-  resources :items
+  # itemsとネストするorders（購入機能）
+  resources :items do
+    resources :orders, only: [:index, :create]
+  end
 end

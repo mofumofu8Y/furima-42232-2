@@ -12,13 +12,19 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
+gem 'payjp'
+
 group :development, :test do
   gem "mysql2", "~> 0.5" # ← ローカルで使うMySQL
   gem "debug", platforms: %i[ mri windows ]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'pry-byebug'
+  gem 'dotenv-rails'
+  gem 'pry-rails'
 end
+
 
 group :development do
   gem "web-console"
@@ -36,3 +42,6 @@ end
 gem 'devise'
 
 gem 'active_hash'
+
+# Gemfile のどこかに次を記述（groupの外に書く）
+gem 'gon'

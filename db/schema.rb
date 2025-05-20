@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_14_073528) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_17_075058) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,19 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_14_073528) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "addresses", charset: "utf8mb3", force: :cascade do |t|
+    t.string "postal_code"
+    t.integer "prefecture_id"
+    t.string "city"
+    t.string "address"
+    t.string "building_name"
+    t.string "phone_number"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_addresses_on_order_id"
   end
 
   create_table "conditions", charset: "utf8mb3", force: :cascade do |t|
@@ -77,6 +90,19 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_14_073528) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "shipping_addresses", charset: "utf8mb3", force: :cascade do |t|
+    t.string "postal_code"
+    t.integer "prefecture_id"
+    t.string "city"
+    t.string "address"
+    t.string "building_name"
+    t.string "phone_number"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_shipping_addresses_on_order_id"
+  end
+
   create_table "shipping_fees", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -104,7 +130,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_14_073528) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "orders"
   add_foreign_key "items", "users"
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "users"
+  add_foreign_key "shipping_addresses", "orders"
 end
