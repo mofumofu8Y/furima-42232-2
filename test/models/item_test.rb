@@ -1,7 +1,5 @@
-require "test_helper"
-
-class ItemTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class Order < ApplicationRecord
+  belongs_to :item
+  belongs_to :user
+  has_one :shipping_address  
 end

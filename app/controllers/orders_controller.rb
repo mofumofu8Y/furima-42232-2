@@ -30,14 +30,12 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order_form).permit(
       :postal_code, :prefecture_id, :city, :address, :building,
-      :phone_number, :token
-    ).merge(user_id: current_user.id, item_id: params[:item_id])
+      :phone_number
+    ).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token])
   end
 
   def set_item
     @item = Item.find(params[:item_id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path
   end
 
   def redirect_if_ordered
