@@ -35,9 +35,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-group :production do
-  gem "pg", "~> 1.5" # ← Renderで使うPostgreSQL
-end
+
 
 gem 'devise'
 
@@ -45,3 +43,7 @@ gem 'active_hash'
 
 # Gemfile のどこかに次を記述（groupの外に書く）
 gem 'gon'
+
+group :production do
+  gem 'pg'
+end
