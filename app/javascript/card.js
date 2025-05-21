@@ -27,8 +27,6 @@ const pay = () => {
       document.getElementById("charge-form").submit();
     });
     e.preventDefault();
-      }
-    });
   });
 };
 
