@@ -1,7 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-  
-
-  const numberDiv = document.getElementById("number-form");
+const pay = () => {
   const publicKey = gon.public_key;
   const payjp = Payjp(publicKey);
   const elements = payjp.elements();
@@ -15,10 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
   cvcElement.mount('#cvc-form');
 
   const form = document.getElementById('charge-form');
+  if (!form) return;
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    payjp.createToken(numberElement).then(function (response) {
+    payjp.createToken(numberElement).then((response) => {
       if (response.error) {
         alert(response.error.message);
       } else {
@@ -34,4 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-});
+};
+
+// turbo:loadとturbo:renderの両方に対応
+window.addEventListener("turbo:load", pay);
+window.addEventListener("turbo:render", pay);

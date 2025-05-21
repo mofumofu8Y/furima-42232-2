@@ -10,8 +10,8 @@ class OrderForm
     validates :address
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "must be a number with 10 to 11 digits" }
     validates :token
-    validates :user_id, presence: true
-  validates :item_id, presence: true
+    validates :user_id
+  validates :item_id
   end
 
   
