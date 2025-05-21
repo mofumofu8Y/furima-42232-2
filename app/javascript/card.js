@@ -1,11 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("JavaScript loaded!");
+  
 
   const numberDiv = document.getElementById("number-form");
-  if (!numberDiv) {
-    console.warn("⚠️ #number-form がDOMに存在していません（まだ読み込まれていない可能性）");
-    return;
-  }
   const publicKey = gon.public_key;
   const payjp = Payjp(publicKey);
   const elements = payjp.elements();

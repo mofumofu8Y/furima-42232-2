@@ -7,7 +7,5 @@ FactoryBot.define do
     building_name   { 'テストビル' }
     phone_number    { '09012345678' }
     token           { 'tok_abcdefghijk00000000000000000' }
-    user_id         { nil }  # テスト内で代入されるためデフォルトはnilでもOK
-    item_id         { nil }
   end
 end

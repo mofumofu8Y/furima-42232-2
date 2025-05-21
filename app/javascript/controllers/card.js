@@ -1,4 +1,4 @@
-
+const pay = () => {
   const publicKey = gon.public_key;
   const payjp = Payjp(publicKey); // PAY.JPテスト公開鍵
 
@@ -23,7 +23,6 @@
       } else {
         const token = response.id;
 
-
         const tokenObj = `<input type="hidden" name="order_form[token]" value="${token}">`;
         form.insertAdjacentHTML("beforeend", tokenObj);
 
@@ -35,9 +34,7 @@
       }
     });
   });
-  const pay = () => {
-    
-  };
+};
 
 // turboがページを読み込んだ・再描画したときにpay関数を実行
 window.addEventListener("turbo:load", pay);

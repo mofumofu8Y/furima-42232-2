@@ -10,10 +10,11 @@ class OrderForm
     validates :address
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "must be a number with 10 to 11 digits" }
     validates :token
+    validates :user_id, presence: true
+  validates :item_id, presence: true
   end
 
-  validates :user_id, presence: true
-  validates :item_id, presence: true
+  
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
