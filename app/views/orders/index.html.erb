@@ -27,17 +27,7 @@
     </div>
   
 <%= form_with model: @order_form, id: 'charge-form', url: item_orders_path(@item), local: true do |f| %>
-  <% if @order_form.errors.any? %>
-    <div id="error_explanation" style="color: red; text-align: center; margin: 30px auto; width: 80%;">
-      <h2><%= pluralize(@order_form.errors.count, "件のエラー") %>が発生しています:</h2>
-      <ul style="list-style: none; padding-left: 0;">
-        <% @order_form.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
+ <%= render 'shared/error_messages', model: f.object %>
   
   <%# クレジットカード情報 %>
   <div class='credit-card-form'>
