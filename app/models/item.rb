@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 belongs_to :days_to_ship, class_name: "DaysToShip"
-  #has_one :order
+  has_one :order
 
    
 
@@ -45,6 +45,9 @@ validates :price, numericality: {
   message: 'must be between ¥300 and ¥9,999,999'
 }
 
+def sold_out?
+  order.present?
+end
 
   # 画像のバリデーション（カスタムバリデーション）
   validate :image_content_type

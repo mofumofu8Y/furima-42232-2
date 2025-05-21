@@ -6,15 +6,14 @@
       <%= @item.name %>
     </h2>
     <div class="item-img-content">
-     <%= image_tag @item.image, class: "item-box-img" if @item.image.attached? %>
-      
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <%# if @item.sold_out? %>
-        <div class="sold-out">
-          <span>Sold Out!!</span>
-        </div>
-      <%# end %>
+    <%= image_tag @item.image, class: "item-box-img" %>
+
+  <% if @item.sold_out? %>
+    <div class="sold-out">
+      <span>Sold Out!!</span>
     </div>
+  <% end %>
+</div>
     
     <div class="item-price-box">
       <span class="item-price">
@@ -25,17 +24,12 @@
       </span>
     </div>
 
-   <% if user_signed_in? %>
+  <% if user_signed_in? && @item.order.blank? %>
   <% if current_user == @item.user %>
-    <!-- 出品者：編集・削除ボタン -->
-   <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
+    <%= link_to "商品の編集", edit_item_path(@item), class: "item-red-btn" %>
     <%= link_to "削除", item_path(@item), data: { turbo_method: :delete, confirm: "本当に削除しますか？" }, class: "item-destroy" %>
-
-
-
   <% else %>
-    <!-- 出品者以外のログインユーザー：購入ボタン -->
-    <%= link_to "購入画面に進む",  "#", class: "item-red-btn" %>
+     <%= link_to "購入画面に進む", item_orders_path(@item), class: "item-red-btn", data: { turbo: false } %>
   <% end %>
 <% end %>
   </div>
@@ -111,5 +105,4 @@
   
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
-
 <%= render "shared/footer" %>

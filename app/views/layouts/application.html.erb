@@ -2,11 +2,17 @@
 <html>
   <head>
     <title>FurimaApp</title>
+<%= include_gon %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= Gon::Base.render_data %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <!-- ✅ Font Awesome CDNを追加 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <script src="https://js.pay.jp/v2/pay.js"></script>
   </head>
 
   <body>
