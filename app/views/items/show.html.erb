@@ -17,7 +17,7 @@
     
     <div class="item-price-box">
       <span class="item-price">
-        ¥ 999,999,999
+        ¥<%= number_with_delimiter(@item.price) %>
       </span>
       <span class="item-postage">
         <%= "配送料負担" %>
