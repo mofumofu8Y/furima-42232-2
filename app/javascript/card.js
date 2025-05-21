@@ -12,24 +12,21 @@ const pay = () => {
   cvcElement.mount('#cvc-form');
 
   const form = document.getElementById('charge-form');
-  if (!form) return;
-
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    payjp.createToken(numberElement).then((response) => {
+    payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
-        alert(response.error.message);
       } else {
         const token = response.id;
-        const tokenObj = `<input value=${token} name="order_form[token]" type="hidden">`;
-        form.insertAdjacentHTML("beforeend", tokenObj);
-
-        numberElement.clear();
-        expiryElement.clear();
-        cvcElement.clear();
-
-        form.submit();
+        const renderDom = document.getElementById("charge-form");
+        const tokenObj = `<input value=${token} name='token' type="hidden">`;
+        renderDom.insertAdjacentHTML("beforeend", tokenObj);
+      }
+      numberElement.clear();
+      expiryElement.clear();
+      cvcElement.clear();
+      document.getElementById("charge-form").submit();
+    });
+    e.preventDefault();
       }
     });
   });
