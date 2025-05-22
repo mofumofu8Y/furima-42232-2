@@ -113,11 +113,43 @@
     </div>
   </div>
 
-  <%# 下部ボタン %>
-  <div class="sell-btn-contents">
-    <%= f.submit "出品する", class: "sell-btn" %>
-    <%= link_to 'もどる', root_path, class: "back-btn" %>
+    <%# 注意書き %>
+    <div class="caution">
+      <p class="sentence">
+        <a href="#">禁止されている出品、</a>
+        <a href="#">行為</a>
+        を必ずご確認ください。
+      </p>
+      <p class="sentence">
+        またブランド品でシリアルナンバー等がある場合はご記載ください。
+        <a href="#">偽ブランドの販売</a>
+        は犯罪であり処罰される可能性があります。
+      </p>
+      <p class="sentence">
+        また、出品をもちまして
+        <a href="#">加盟店規約</a>
+        に同意したことになります。
+      </p>
+    </div>
+    <%# /注意書き %>
+    <%# 下部ボタン %>
+    <div class="sell-btn-contents">
+      <%= f.submit "出品する" ,class:"sell-btn" %>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+    <%# /下部ボタン %>
   </div>
-<% end %> <!-- ← これが正しい位置 -->
-  </div> <!-- items-sell-main を閉じる -->
-</div>   <!-- items-sell-contents を閉じる -->
+  <% end %>
+
+  <footer class="items-sell-footer">
+    <ul class="menu">
+      <li><a href="#">プライバシーポリシー</a></li>
+      <li><a href="#">フリマ利用規約</a></li>
+      <li><a href="#">特定商取引に関する表記</a></li>
+    </ul>
+    <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+    <p class="inc">
+      ©︎Furima,Inc.
+    </p>
+  </footer>
+</div>
