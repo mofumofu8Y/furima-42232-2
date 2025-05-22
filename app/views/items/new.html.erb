@@ -47,7 +47,7 @@
         <span class="indispensable">必須</span>
       </div>
       <%= f.collection_select(:category_id, Category.all, :id, :name, {  }, { class: "select-box", id: "item-category" }) %>
-      <div class="error-message"><%= @item.errors[:category_id].first %></div>
+      <div class="error-message"><</div>
 
       <div class="weight-bold-text">
         商品の状態
@@ -55,7 +55,7 @@
       </div>
       <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, { class: "select-box", id: "item-condition" }) %>
 <% if @item.errors[:condition_id].any? %>
-  <div class="error-message"><%= @item.errors[:condition_id].first %></div>
+  <div class="error-message"></div>
 <% end %>
     </div>
   </div>
