@@ -53,7 +53,10 @@
         商品の状態
         <span class="indispensable">必須</span>
       </div>
-      <%= f.collection_select(:condition_id, Condition.all, :id, :name, {  }, { class: "select-box", id: "item-condition" }) %>
+      <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, { class: "select-box", id: "item-condition" }) %>
+<% if @item.errors[:condition_id].any? %>
+  <div class="error-message"><%= @item.errors[:condition_id].first %></div>
+<% end %>
     </div>
   </div>
 
@@ -74,13 +77,13 @@
         発送元の地域
         <span class="indispensable">必須</span>
       </div>
-      <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class: "select-box", id: "item-prefecture"}) %>
+      <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: ""}, {class: "select-box", id: "item-prefecture"}) %>
 
       <div class="weight-bold-text">
         発送までの日数
         <span class="indispensable">必須</span>
       </div>
-      <%= f.collection_select(:scheduled_delivery_id, ScheduledDelivery.all, :id, :name, {}, {class: "select-box", id: "item-scheduled-delivery"}) %>
+      <%= f.collection_select(:scheduled_delivery_id, ScheduledDelivery.all, :id, :name, {prompt: ""}, {class: "select-box", id: "item-scheduled-delivery"}) %>
     </div>
   </div>
 
@@ -101,11 +104,11 @@
       </div>
       <div class="price-content">
         <span>販売手数料 (10%)</span>
-        <span><span id="add-tax-price">---</span>円</span>
+        <span><span id="add-tax-price"></span>円</span>
       </div>
       <div class="price-content">
         <span>販売利益</span>
-        <span><span id="profit">---</span>円</span>
+        <span><span id="profit"></span>円</span>
       </div>
     </div>
   </div>
